@@ -115,7 +115,7 @@
   /* Life */
   .life { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
   .life figure { margin: 0; }
-  .life .ph { aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 0.85rem; text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.45); border: 1px dashed rgba(25, 38, 79, 0.2); }
+  .life .ph { aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 0.85rem; text-align: center; background: rgba(255, 255, 255, 0.45); box-shadow: 0 14px 30px -14px rgba(25, 38, 79, 0.55); }
   .life .ph img { width: 100%; height: 100%; object-fit: cover; }
   .life figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
 
@@ -136,6 +136,9 @@
   .tabbar {
     position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10;
     display: flex; gap: 4px; padding: 6px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
   }
   .tabbar a { padding: 9px 16px; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
   .tabbar a:hover { background: rgba(255, 255, 255, 0.6); }
@@ -219,10 +222,9 @@
       <p>I pace at 4RC Run Club, train calisthenics in parks around London, and recently marshalled at a half marathon in Richmond Park, handing out water and sweets to runners.</p>
     </div>
     <div class="life">
-      <!-- Swap each placeholder for a photo, e.g. <div class="ph"><img src="training.jpg" alt="Training calisthenics in a London park"></div> -->
-      <figure><div class="ph">Photo coming</div><figcaption>Training</figcaption></figure>
-      <figure><div class="ph">Photo coming</div><figcaption>4RC Run Club</figcaption></figure>
-      <figure><div class="ph">Photo coming</div><figcaption>Marshalling in Richmond Park</figcaption></figure>
+      <figure><div class="ph"><img src="training.jpg" alt="Tyrese with a group of friends at an outdoor calisthenics park" style="object-position: center 65%"></div><figcaption>Training with the community</figcaption></figure>
+      <figure><div class="ph"><img src="running.jpg" alt="Tyrese holding a medal after a race"></div><figcaption>Race day</figcaption></figure>
+      <figure><div class="ph"><img src="volunteering.jpg" alt="Tyrese in a hi-vis vest at a race water station"></div><figcaption>Marshalling in Richmond Park</figcaption></figure>
     </div>
   </section>
 
