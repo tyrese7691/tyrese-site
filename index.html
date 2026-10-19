@@ -81,10 +81,15 @@
 
   /* Intro */
   .intro { margin-top: 32px; }
-  .me { display: flex; align-items: center; gap: 18px; margin-bottom: 36px; }
-  .me img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: center 18%; background: var(--navy); box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8); }
-  .me h1 { font-size: 1.25rem; font-weight: 700; margin: 0; line-height: 1.2; }
-  .me p { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+  .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; }
+  .hero .where { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  .portrait {
+    margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--navy);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 24px 50px -20px rgba(25, 38, 79, 0.6);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transform: scale(1.3); transform-origin: center 22%; }
   .big {
     font-size: clamp(1.9rem, 4.6vw, 2.75rem);
     line-height: 1.15; font-weight: 500; letter-spacing: -0.015em;
@@ -120,6 +125,10 @@
   .life figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
 
   /* Work history */
+  .bring { list-style: none; padding: 0; margin: 0; }
+  .bring li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .bring li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .bring b { color: var(--navy); }
   .history { list-style: none; padding: 0; margin: 0; }
   .history li { padding: 16px 0; border-bottom: 1px solid var(--line); }
   .history li:last-child { border-bottom: 0; }
@@ -146,9 +155,12 @@
   @media (max-width: 720px) {
     .card { padding: 36px 22px; }
     .intro { margin-top: 8px; }
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .portrait { order: -1; max-width: 240px; }
     .shots, .life { gap: 8px; }
     .shots img, .life .ph { border-radius: 12px; }
     .tabbar a { padding: 8px 11px; font-size: 0.88rem; }
+    .tabbar a[href="#top"] { display: none; }
   }
   @media (max-width: 380px) {
     .shell { padding-left: 12px; padding-right: 12px; }
@@ -160,6 +172,7 @@
 
 <nav class="tabbar glass" aria-label="Sections">
   <a href="#top">Home</a>
+  <a href="#bring">Skills</a>
   <a href="#calispot">CaliSpot</a>
   <a href="#life">Life</a>
   <a href="#experience">Work</a>
@@ -168,29 +181,40 @@
 
 <div class="shell">
   <header class="intro card glass" id="top">
-    <div class="col">
-      <div class="me">
-        <img src="tyrese.jpg" alt="Tyrese Bewry">
-        <div>
-          <h1>Tyrese Bewry</h1>
-          <p>London</p>
+    <div class="hero">
+      <div>
+        <h1>Tyrese Bewry</h1>
+        <p class="where">London. Looking for customer success, support and onboarding roles.</p>
+        <p class="big">I build apps and look after the people who use them.</p>
+        <p>I built CaliSpot, an app for finding outdoor calisthenics spots, and I've been the person its 2,300+ users message when something's wrong or they want something new.</p>
+        <p>Before that I spent years looking after customers in restaurants. Now I want to do it at a software company.</p>
+        <div class="links">
+          <a class="pill solid" href="mailto:ty.rese@icloud.com">Email me</a>
+          <a class="pill" href="https://www.linkedin.com/in/tyrese-bewry-29a1a8155">LinkedIn</a>
+          <a class="pill" href="Tyrese-Bewry-CV.pdf">CV (PDF)</a>
         </div>
       </div>
-      <p class="big">I build apps and look after the people who use them.</p>
-      <p>I built CaliSpot, an app for finding outdoor calisthenics spots, and I've been the person its 2,300+ users message when something's wrong or they want something new.</p>
-      <p>Before that I spent years working with customers in restaurants. Now I'm looking for a customer support, customer success or onboarding role at a software company.</p>
-      <div class="links">
-        <a class="pill solid" href="mailto:ty.rese@icloud.com">Email me</a>
-        <a class="pill" href="https://www.linkedin.com/in/tyrese-bewry-29a1a8155">LinkedIn</a>
-        <a class="pill" href="Tyrese-Bewry-CV.pdf">CV (PDF)</a>
-      </div>
+      <figure class="portrait"><img src="tyrese.jpg" alt="Tyrese Bewry"></figure>
     </div>
   </header>
+
+  <section class="card glass" id="bring">
+    <div class="col">
+      <h2>What I'd bring to a customer team</h2>
+      <ul class="bring">
+        <li><b>Support and troubleshooting.</b> I answer every CaliSpot user question myself, reproduce the problem, then fix it, find a workaround or escalate it to the next release.</li>
+        <li><b>Onboarding and relationships.</b> I brought an equipment brand on as a partner, agreed an affiliate and competition deal, and looked after the relationship from start to finish.</li>
+        <li><b>The customer's voice in the product.</b> I group what users tell me, spot the repeat problems, and get the most common ones fixed first. Then I tell people when it's done.</li>
+        <li><b>Using data to spot problems.</b> I track signups, active users and usage, and check crash reports after every release to catch issues before users report them.</li>
+        <li><b>Calm with unhappy customers.</b> Years of handling complaints face to face and on the phone at Slim Chickens and Pizza Hut, including leading a team of 5 through busy service.</li>
+      </ul>
+    </div>
+  </section>
 
   <section class="card glass" id="calispot">
     <div class="col">
       <h2>CaliSpot</h2>
-      <p>CaliSpot helps people find outdoor training spots, events and people to train with. It's live on iOS and Android.</p>
+      <p>CaliSpot helps people find outdoor training spots, events and people to train with. It's live on iOS and Android. <a href="https://calispot.xyz">Visit calispot.xyz</a></p>
       <ul class="facts">
         <li><strong>3,000+</strong> iOS downloads</li>
         <li><strong>2,300+</strong> signups</li>
@@ -203,15 +227,15 @@
       <img src="calispot-training.jpg" alt="CaliSpot daily training plan with a challenge and logged sessions">
     </div>
     <div class="col">
-      <h3>Looking after the users</h3>
+      <h3>Supporting 2,300+ users</h3>
       <p>Messages come in from everywhere: in-app feedback, email, Instagram DMs, app store reviews. I reply to them myself, try to reproduce the problem, then fix it, find a workaround or put it in the next release.</p>
       <p>When the same complaint keeps coming up, that's what gets fixed first, and I let people know when something they reported has shipped. Over two months of working like this, weekly active users went up 20%.</p>
       <p class="muted">If I started again, I'd set up a help centre and saved replies much earlier, so the common questions answer themselves.</p>
 
-      <h3>Search bar before dark mode</h3>
+      <h3>Feedback into the product: search bar before dark mode</h3>
       <p>One person asked for dark mode. But everyone had to scroll around the map to find a park. So I built a map search bar first, and people responded well to it.</p>
 
-      <h3>What people actually open the app for</h3>
+      <h3>Using data to understand users</h3>
       <p>In one month there were 4,669 app opens but only 60 logged workouts. People come back to find places to train, not to log their training. So I put my effort into spot discovery and added reviews to each spot, so people can judge a spot before they travel to it.</p>
     </div>
   </section>
