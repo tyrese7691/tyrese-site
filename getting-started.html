@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CaliSpot Getting Started</title>
+<meta name="description" content="A getting started guide and FAQ for new CaliSpot users, written by Tyrese Bewry.">
+<meta name="theme-color" content="#19264F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #19264F;
+    --ink: #1E2230;
+    --muted: #535A70;
+    --line: rgba(25, 38, 79, 0.12);
+    --glass: rgba(255, 255, 255, 0.38);
+    --glass-strong: rgba(255, 255, 255, 0.72);
+    --edge: rgba(255, 255, 255, 0.7);
+    --radius: 28px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Schibsted Grotesk", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    background: #E9EDF6;
+    min-height: 100vh;
+  }
+  /* The colour the glass sits on: soft navy and blue light, fixed behind the page */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1;
+    background:
+      radial-gradient(48vw 48vw at 6% 10%, rgba(25, 38, 79, 0.85), transparent 70%),
+      radial-gradient(42vw 42vw at 96% 30%, rgba(74, 104, 214, 0.7), transparent 70%),
+      radial-gradient(52vw 52vw at 72% 96%, rgba(25, 38, 79, 0.7), transparent 70%),
+      radial-gradient(34vw 34vw at 18% 80%, rgba(140, 166, 236, 0.8), transparent 70%),
+      #DCE2F0;
+  }
+  a { color: var(--navy); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; border-radius: 6px; }
+  img { display: block; max-width: 100%; }
+
+  /* Liquid glass surface */
+  .glass {
+    position: relative;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    backdrop-filter: blur(28px) saturate(170%);
+    border: 1px solid var(--edge);
+    border-radius: var(--radius);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+      0 20px 50px -20px rgba(25, 38, 79, 0.35);
+  }
+  /* Specular sheen across the top edge */
+  .glass::before {
+    content: "";
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 38%);
+    mix-blend-mode: soft-light;
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass { background: rgba(255, 255, 255, 0.9); }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .glass { background: rgba(255, 255, 255, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  }
+
+  .shell { max-width: 960px; margin: 0 auto; padding: 24px 20px 120px; display: grid; gap: 20px; }
+  .card { padding: 56px 48px; }
+  .col { max-width: 620px; margin: 0 auto; }
+
+  /* Intro */
+  .intro { margin-top: 32px; }
+  .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; }
+  .hero .where { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  strong { color: var(--navy); font-weight: 700; }
+  .portrait {
+    margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--navy);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 24px 50px -20px rgba(25, 38, 79, 0.6);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transform: scale(1.3); transform-origin: center 22%; }
+  .big {
+    font-size: clamp(1.9rem, 4.6vw, 2.75rem);
+    line-height: 1.15; font-weight: 500; letter-spacing: -0.015em;
+    color: var(--navy); margin: 0 0 28px; max-width: 20ch;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .pill {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-weight: 500; text-decoration: none;
+    background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px -6px rgba(25, 38, 79, 0.35);
+  }
+  .pill:hover { background: rgba(255, 255, 255, 0.85); }
+  .pill.solid { background: var(--navy); color: #fff; border-color: rgba(255, 255, 255, 0.25); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 6px 18px -6px rgba(25, 38, 79, 0.6); }
+  .pill.solid:hover { background: #24356B; }
+
+  h2 { font-size: 1.35rem; font-weight: 700; color: var(--navy); margin: 0 0 18px; line-height: 1.3; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 32px 0 6px; }
+  p { margin: 0 0 16px; }
+  .muted { color: var(--muted); }
+
+  /* CaliSpot */
+  .facts { list-style: none; padding: 0; margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .facts li { padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.8); color: var(--muted); font-size: 0.95rem; }
+  .facts strong { color: var(--navy); margin-right: 3px; }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 36px 0; }
+  .shots img { width: 100%; aspect-ratio: 924 / 2000; object-fit: cover; border-radius: 18px; box-shadow: 0 14px 30px -14px rgba(25, 38, 79, 0.55); }
+
+  /* Life */
+  .life { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .life figure { margin: 0; }
+  .life .ph { aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 0.85rem; text-align: center; background: rgba(255, 255, 255, 0.45); box-shadow: 0 14px 30px -14px rgba(25, 38, 79, 0.55); }
+  .life .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .life figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+
+  /* Work history */
+  .video { position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: var(--navy); box-shadow: 0 14px 30px -14px rgba(25, 38, 79, 0.55); }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .small { font-size: 0.9rem; margin: 12px 0 0; }
+  .bring { list-style: none; padding: 0; margin: 0; }
+  .bring li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .bring li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .bring b { color: var(--navy); }
+  .history { list-style: none; padding: 0; margin: 0; }
+  .history li { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .history li:last-child { border-bottom: 0; }
+  .history .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .history span { color: var(--muted); font-size: 0.95rem; }
+  .history p { margin: 4px 0 0; color: var(--muted); }
+
+  /* Contact card: tinted navy glass */
+  .contact { background: rgba(25, 38, 79, 0.78); color: #E6E9F2; border-color: rgba(255, 255, 255, 0.22); }
+  .contact h2 { color: #fff; }
+  .contact .pill { color: var(--navy); }
+
+  /* Floating glass tab bar, like iOS */
+  .tabbar {
+    position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10;
+    display: flex; gap: 4px; padding: 6px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+  }
+  .tabbar a { padding: 9px 16px; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+  .tabbar a:hover { background: rgba(255, 255, 255, 0.6); }
+
+  @media (max-width: 720px) {
+    .card { padding: 36px 22px; }
+    .intro { margin-top: 8px; }
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .portrait { order: -1; max-width: 240px; }
+    .shots, .life { gap: 8px; }
+    .shots img, .life .ph { border-radius: 12px; }
+    .tabbar a { padding: 8px 11px; font-size: 0.88rem; }
+    .tabbar a[href="#top"] { display: none; }
+  }
+  @media (max-width: 380px) {
+    .shell { padding-left: 12px; padding-right: 12px; }
+    .tabbar a { padding: 8px 9px; font-size: 0.82rem; }
+  }
+
+  /* Guide */
+  .steps { padding-left: 1.3em; margin: 0; }
+  .steps li { padding: 10px 0 10px 6px; border-bottom: 1px solid var(--line); }
+  .steps li:last-child { border-bottom: 0; }
+  .steps b, .steps li::marker { color: var(--navy); font-weight: 700; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  .faq details:last-child { border-bottom: 0; }
+  .faq summary { cursor: pointer; font-weight: 700; color: var(--navy); list-style-position: outside; }
+  .faq details p { margin: 10px 0 0; }
+  .intro h1 { font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; }
+  .intro .where { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  @media (max-width: 720px) { .tabbar a[href="#top"] { display: inline-block; } }
+</style>
+</head>
+<body>
+
+<nav class="tabbar glass" aria-label="Sections">
+  <a href="index.html">← Home</a>
+  <a href="#start">Start</a>
+  <a href="#faq">FAQ</a>
+  <a href="#help">Help</a>
+</nav>
+
+<div class="shell">
+  <header class="intro card glass" id="top">
+    <div class="col">
+      <h1>CaliSpot: getting started</h1>
+      <p class="where">A guide I wrote for new CaliSpot users, by <a href="index.html">Tyrese Bewry</a></p>
+      <p class="big">Find a spot, train, and meet people to train with.</p>
+      <p>Most of the questions I get from new users are the same handful. This guide answers them in one place, so people can get going on their own and I can spend more time on the problems that need a person.</p>
+    </div>
+  </header>
+
+  <section class="card glass" id="start">
+    <div class="col">
+      <h2>Your first 5 minutes</h2>
+      <ol class="steps">
+        <li><b>Download and sign up.</b> CaliSpot is free on <a href="https://apps.apple.com/app/id6747050360">iPhone</a> and <a href="https://play.google.com/store/apps/details?id=com.eightmind.calispot">Android</a>. Your account works on both, so you can switch phones without losing anything.</li>
+        <li><b>Allow location.</b> CaliSpot uses your location to show the spots nearest to you. You can still browse the map without it.</li>
+        <li><b>Find a spot.</b> Open the map, or search for a park or area. Tap a spot to see photos, equipment and reviews from other users before you travel.</li>
+        <li><b>Check in when you arrive.</b> Checking in starts your session timer and lets others see the spot is active. When you finish, your session is saved to your profile.</li>
+        <li><b>Find people to train with.</b> Browse events for regular meetups at parks near you, join a crew, or add friends by scanning their QR code.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card glass" id="faq">
+    <div class="col">
+      <h2>Common questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Is CaliSpot free?</summary>
+          <p>Yes. Finding spots, checking in, logging sessions, events and crews are all free. CaliSpot Pro is an optional subscription with extras like an AI workout generator, and it comes with a 7-day free trial.</p>
+        </details>
+        <details>
+          <summary>I can't see any spots near me. What can I do?</summary>
+          <p>First, check location is turned on for CaliSpot in your phone's settings. Coverage is strongest in London and the UK, and it grows because users add spots. If your local park is missing, add it yourself and it'll appear for everyone once it's checked.</p>
+        </details>
+        <details>
+          <summary>How do I add a new spot?</summary>
+          <p>Use the option to submit a spot, add its location, a photo and the equipment there. Good photos help other people decide whether it's worth the trip.</p>
+        </details>
+        <details>
+          <summary>What are XP and leagues?</summary>
+          <p>You earn XP when you check in and train. Your monthly XP puts you in a league with other users, so there's a bit of friendly competition to keep you consistent.</p>
+        </details>
+        <details>
+          <summary>I'm not getting notifications.</summary>
+          <p>Check notifications are allowed for CaliSpot in your phone's settings. If you've just reinstalled the app or switched phones, open CaliSpot once so it can reconnect. If they still don't arrive, email me and I'll look into it.</p>
+        </details>
+        <details>
+          <summary>Can I use the same account on iPhone and Android?</summary>
+          <p>Yes. Log in with the same email or Google account and your spots, sessions, friends and XP come with you.</p>
+        </details>
+        <details>
+          <summary>How do I delete my account?</summary>
+          <p>Go to <a href="https://calispot.xyz/delete-account">calispot.xyz/delete-account</a> and follow the steps. Your data is removed as described in the privacy policy.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="card glass" id="why">
+    <div class="col">
+      <h2>Why I wrote this</h2>
+      <p>I handle every CaliSpot support message myself, across in-app feedback, email, Instagram and app store reviews. When I grouped those messages, the same few questions kept coming up: why spots weren't showing, how to add a park, and notifications that stopped after a reinstall.</p>
+      <p>Answering each one individually doesn't scale. A short guide lets people help themselves straight away, and frees me up for the problems that genuinely need a person. Looking back, it's the thing I'd have written first.</p>
+    </div>
+  </section>
+
+  <footer class="card glass contact" id="help">
+    <div class="col">
+      <h2>Still stuck?</h2>
+      <p>Email <a href="mailto:support@calispot.xyz" style="color:#fff">support@calispot.xyz</a> with what you were trying to do and, if you can, a screenshot. I reply to every message myself.</p>
+      <div class="links">
+        <a class="pill" href="mailto:support@calispot.xyz">Email support</a>
+        <a class="pill" href="https://calispot.xyz">calispot.xyz</a>
+        <a class="pill" href="index.html">Back to my site</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
